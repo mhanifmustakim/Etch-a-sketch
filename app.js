@@ -35,6 +35,18 @@ colorPicker.addEventListener("change", (e) => {
     makeSketchColor(curColor);
 })
 
+// Create a media condition that targets viewports at least 768px wide
+const mediaQuery = window.matchMedia('(max-width: 460px)')
+
+// Check if the media query is true
+if (mediaQuery.matches) {
+    // Then trigger an alert
+    alert('This page is currently suitable on PC or laptop only');
+}
+
+
+
+
 function createGrid(size) {
     for (let i = 0; i < size ** 2; i++) {
         curSize = size;
