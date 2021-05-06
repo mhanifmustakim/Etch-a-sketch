@@ -14,14 +14,18 @@
         <h1>Etch-A-Sketch Project</h1>
         <div id="grid-container"></div>
         <div id="settings">
-            <form id="change-size-form">
+            <form class="settings-ctrl" id="change-size-form">
                 <label for="new-size">
-                    New Canvas Size:
+                    New Size:
                     <input type="number" min="8" max="50" name="new-size" id="new-size">
                 </label>
             </form>
-            <button>Rainbow!</button>
-            <button id="reset">Reset</button>
+            <label class="settings-ctrl" for="color-picker">
+                Custom Color:
+                <input type="color" name="color-picker" id="color-picker">
+            </label>
+            <button class="settings-ctrl" id="change-color">Rainbow!</button>
+            <button class="settings-ctrl" id="reset">Reset</button>
         </div>
     </div>
 

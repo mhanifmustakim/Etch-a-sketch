@@ -40,9 +40,9 @@ button{
     font-size: inherit;
 }
 #grid-container{
-    width: 500px;
-    height: 500px;
-    margin: 4rem 0;
+    width: 700px;
+    height: 700px;
+    margin: 3rem 0;
     background-color: whitesmoke;
     box-sizing: border-box;
     display: grid;
@@ -51,6 +51,7 @@ button{
     box-sizing: border-box;
     background-color: white;
     border: solid 0.001rem whitesmoke;
+    transition: all 0.1s;
 }
 .container{
     height: 100vh;
@@ -68,13 +69,18 @@ h1{
     display: flex;
     justify-content: space-around;
     font-weight: bold;
-    width: 50%;
 }
-#change-size-form {
+.settings-ctrl{
     background-color: #F9F1F0;
     border-radius: 1.1em;
     padding: 0.5rem 2rem;
-    width: auto;
+    margin: 0 0.5rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#change-color{
+    width: 150px;
 }
 
 input[type="number"]{
@@ -83,13 +89,21 @@ input[type="number"]{
     background-color: transparent;
     border: none;
 }
-input[type="number"]:focus{
-    width: 20%;
-    border-color: none;
-    background-color: transparent;
-    border: none;
-}
-@media (max-width: 28.75em) {
+
+@media (max-width: 75em) {
+    .settings-ctrl{
+        font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 61.25em) {
+    #grid-container{
+        width: 500px;
+        height: 500px;
+    }
+  }
+
+  @media (max-width: 28.75em) {
     #grid-container{
         width: 300px;
         height: 300px;
@@ -100,5 +114,25 @@ input[type="number"]:focus{
     #settings{
         width: 100%;
         font-size: 1.2rem;
+        text-align: center;
+        justify-content: space-between;
+        flex-flow: wrap-reverse column-reverse;
+    }
+    .settings-ctrl{
+        background-color: #F9F1F0;
+        height: 3rem;
+        border-radius: 1.1em;
+        padding: 0.5rem 2rem;
+        margin: 0.5rem 0.5rem;
+    }
+    input{
+        margin-left: 2rem;
+    }
+    input[type="color"]{
+        box-sizing: border-box;
+        height: 2rem;
+    }
+    #change-color{
+        width: auto;
     }
 }

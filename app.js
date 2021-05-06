@@ -1,6 +1,7 @@
 const gridContainer = document.querySelector("#grid-container");
-
-createGrid(16);
+let curSize = 16;
+let curColor = "black";
+createGrid(curSize);
 
 const changeSizeForm = document.querySelector("#change-size-form");
 changeSizeForm.addEventListener("submit", (e) => {
@@ -13,13 +14,30 @@ changeSizeForm.addEventListener("submit", (e) => {
 })
 
 const resetBtn = document.querySelector("#reset");
-resetBtn.addEventListener("click", () => {
-    deleteGrids();
-    createGrid();
+resetBtn.addEventListener("click", resetGrids)
+
+const changeColorBtn = document.querySelector("#change-color");
+changeColorBtn.addEventListener("click", (e) => {
+    if (changeColorBtn.textContent.toLowerCase() == "rainbow!") {
+        changeColorBtn.textContent = "Black!";
+        makeSketchColor("random");
+    } else if (changeColorBtn.textContent.toLowerCase() == "black!") {
+        changeColorBtn.textContent = "Rainbow!";
+        curColor = "black";
+        makeSketchColor(curColor);
+    }
+})
+
+const colorPicker = document.querySelector("#color-picker");
+colorPicker.addEventListener("change", (e) => {
+    e.preventDefault();
+    curColor = `${e.target.value}`;
+    makeSketchColor(curColor);
 })
 
 function createGrid(size) {
     for (let i = 0; i < size ** 2; i++) {
+        curSize = size;
         //resizing grid container
         gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
         gridContainer.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -30,10 +48,7 @@ function createGrid(size) {
         grid.style.height = `${gridContainer.offsetHeight / size}px`;
         gridContainer.appendChild(grid);
     }
-    const grids = document.querySelectorAll(".grid");
-    grids.forEach((box) => box.addEventListener("mouseover", () => {
-        box.style.backgroundColor = "black";
-    }));
+    makeSketchColor(curColor);
 }
 
 function deleteGrids() {
@@ -41,4 +56,24 @@ function deleteGrids() {
     grids.forEach((box) => {
         box.remove();
     })
+}
+
+function resetGrids() {
+    deleteGrids();
+    createGrid(curSize);
+}
+
+function makeSketchColor(color) {
+    const grids = document.querySelectorAll(".grid");
+    grids.forEach((box) => box.addEventListener("mouseover", () => {
+        if (color == "random") {
+            box.style.backgroundColor = randColor();
+        } else {
+            box.style.backgroundColor = color;
+        }
+    }));
+}
+
+function randColor() {
+    return `hsl(${Math.floor(Math.random() * 360 + 1)}, 100%, 50%)`;
 }
